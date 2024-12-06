@@ -1,0 +1,66 @@
+{% include 'top.html' %}
+    
+<div id="content">
+    <h1 class="page-title"> Details of the Cards that expired on a particular date</h1>
+    {% if session['isadmin'] == True %}
+        <div style="float: left;">
+            <button class="pure-button" ><a href="{{ url_for('add_card') }}" class="pure-menu-link">Add card</a></button>
+           
+        </div>            
+    {% endif %}
+    <br/>
+    <table class="pure-table">
+        <thead>
+            <tr>
+               {% if session['isadmin'] == True %}
+               <th> Delete </th>
+               <th> cardid </th>
+               <th> cardtypeid </th>
+               <th> userid </th>
+               <th> expiry </th>
+               <th> balance </th>
+               {% else %}
+               <th> Delete </th>
+               <th> cardid </th>
+               <th> cardtypeid </th>
+               <th> userid </th>
+               <th> expiry </th>
+               <th> balance </th>
+               <th> Update </th>
+               {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in users %}
+            <tr>
+                {% if session['isadmin'] == True %}
+                
+                    <td> 
+                        {% if item['isadmin'] == True %}
+                            <button disabled class="pure-button" onclick="alert('Even an Admin should not delete an admin')"><a aria-disabled="true" class="pure-menu-link">Delete</a></button>
+                            
+                        {% else %}
+                            <button class="pure-button" ><a disabled href="{{ url_for('delete_card', cardid=item.cardid) }}" class="pure-menu-link">Delete</a></button>
+                        {% endif %}
+                    </td>
+                    <form name="{{item['cardid']}}_form" class="Update" method="POST" action="{{url_for('update_card')}}">
+                        </td>
+                        <td> <input type="date" id="expiry" name="expiry" value="{{item['expiry']}}" placeholder="{{item['expiry']}}">
+                    
+                        </td>
+
+                        <td> <button class="pure-button pure-button-primary" type="submit">Update</button>
+                        </td>
+                    </form>
+                {% else %}
+                    <td><b> {{item['expiry']}} </b></td>
+                    <td> {{item['count']}}</td>
+
+                {% endif %} 
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

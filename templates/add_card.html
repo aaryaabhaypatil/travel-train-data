@@ -1,0 +1,51 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+
+        <h2 class="title"> Add Card </h2>
+
+ 
+
+        <form class="Add" method="POST" action="{{url_for('add_card')}}">
+            <label for="userid"> Card Type Id:</label>
+            <select id="cardtypeid" name="cardtypeid">
+                {% for item in userroles %}
+                    <option value="{{item['cardtypeid']}}" >{{item['cardtypeid']}} </option>
+                {% endfor %}
+            </select>
+
+
+            <br/>
+            <label for="userid"> User Id:</label>
+            <select id="userid" name="userid">
+                {% for item in userroles %}
+                    <option value="{{item['userid']}}" >{{item['userid']}} </option>
+                {% endfor %}
+            </select>
+
+
+            <br/>
+            <label for="expiry">Expiry:</label>
+            <input type="date" id="expiry" name="expiry" value="" placeholder="expiry">
+            <br/>
+            <label for="balance">Balance:</label>
+            <input type="number" id="balance" name="balance" value="" placeholder="balance">
+            <br/>
+            <button class="pure-button pure-button-primary" type="submit"> Add </button>
+            <br/>
+            <hr/>
+            <hr/>
+            <hr/>
+            
+
+        </form>
+        <br/>
+        <div>
+ 
+        <br/>
+        <div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% include 'top.html' %}
+    
+<div id="content">
+    <h1 class="page-title"> Cap Limit </h1>
+    <br/>
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th> cardid </th>
+                <th> cardtypeid </th>
+                <th> userid </th>
+                <th> expiry </th>
+                <th> cap_limit </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cards %}
+            <tr>
+                <td> {{item['cardid']}}</td>
+                <td> {{item['cardtypeid']}}</td>
+                <td> {{item['userid']}}</td>
+                <td> {{item['expiry']}}</td>
+                <td> {{item['cap_limit']}}</td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
